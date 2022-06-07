@@ -1,32 +1,54 @@
-﻿string[] myStrings = new string[] { "the", "red", "fox" };
-
-void ProcessWordArray()
+bool IsPalindrome(string testString)
 {
-    int arrayLength;
-    
-    Console.WriteLine("How many words are you entering?");
-    arrayLength = Convert.ToInt32(Console.ReadLine());
-    string[] wordsArray = new string[arrayLength];
-
-    Console.WriteLine("Please enter " + arrayLength + " random words");
-    for(int i = 0; i < wordsArray.Length; i++)
+    int boolChecker = 0;
+    for (int i = 0; i < testString.Length; i++)
     {
-        wordsArray[i] = Console.ReadLine();
-    }
-    Console.WriteLine("Please enter a character");
-    Char inputChar = Convert.ToChar(Console.ReadLine());
-    int counter = 0;
-    for (int i = 0; i < wordsArray.Length; i++)
-    {
-        for (int j = 0; j < wordsArray[i].Length; j++)
+        foreach (char c in testString)
         {
-                if(inputChar == wordsArray[i][j])
-                {
-                    counter++;
-                }
+            if(c == ' ')
+            {
+                break;
+            }
         }
+        for(int j = testString.Length - 1; j > (testString.Length - 1) / 2; j--)
+        {
+  
+            if(testString[j] == testString[i])
+            {
+                Console.WriteLine(boolChecker);
+                boolChecker++;
+            }
+
+        }   
     }
-    Console.WriteLine("The letter " + inputChar + " appears " + counter + " times in the array.");
+    return boolChecker == (testString.Length - 1);
 }
 
-ProcessWordArray();
+Console.WriteLine("Enter a word / phrase");
+
+if(IsPalindrome(Console.ReadLine()))
+{
+    Console.WriteLine("This is Palindrome");
+};
+
+
+char[] DuplicateCharacters(string testString)
+{
+    char[] duplicatedChars = new char[testString.Length];
+    List<char> charList = duplicatedChars.ToList();
+    for (int i = 0; i < testString.Length; i++)
+    {
+        for(int j = 1; j < testString.Length; j++)
+        {
+            if (testString[i] == testString[j])
+            {
+
+                charList.Add(testString[j]);
+            };
+        };
+    };
+    Console.WriteLine(charList);
+    return duplicatedChars;
+};
+
+DuplicateCharacters(Console.ReadLine());
