@@ -1,4 +1,4 @@
-﻿string[] myStrings = new string[] { "the", "red", "fox" };
+
 
 void ProcessWordArray()
 {
