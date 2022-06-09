@@ -1,32 +1,49 @@
-﻿string[] myStrings = new string[] { "the", "red", "fox" };
+Dictionary<int, string> CarPark = new Dictionary<int, string>();
+CarPark.Add(1, "GGG-123");
+CarPark.Add(2, "ABC_DEF");
+CarPark.Add(3, null);
+CarPark.Add(4, "AAA-111");
 
-void ProcessWordArray()
+
+foreach(KeyValuePair<int, string> value in CarPark)
 {
-    int arrayLength;
-    
-    Console.WriteLine("How many words are you entering?");
-    arrayLength = Convert.ToInt32(Console.ReadLine());
-    string[] wordsArray = new string[arrayLength];
-
-    Console.WriteLine("Please enter " + arrayLength + " random words");
-    for(int i = 0; i < wordsArray.Length; i++)
-    {
-        wordsArray[i] = Console.ReadLine();
-    }
-    Console.WriteLine("Please enter a character");
-    Char inputChar = Convert.ToChar(Console.ReadLine());
-    int counter = 0;
-    for (int i = 0; i < wordsArray.Length; i++)
-    {
-        for (int j = 0; j < wordsArray[i].Length; j++)
-        {
-                if(inputChar == wordsArray[i][j])
-                {
-                    counter++;
-                }
-        }
-    }
-    Console.WriteLine("The letter " + inputChar + " appears " + counter + " times in the array.");
+    Console.WriteLine(value);
 }
 
-ProcessWordArray();
+
+Dictionary<int, string> InitializeCarPark(int capacity)
+{
+    int counter = 0;
+    for(int i = CarPark.Count + 1; counter < capacity; i++)
+    {
+        CarPark.Add(i, null);
+        counter++;
+        Console.WriteLine(i.ToString(), counter);
+    }
+    
+    return CarPark;
+    
+}
+
+InitializeCarPark(3);
+
+int AddVehicle(string licence)
+{
+    int parkingSlot = 0;
+    foreach (KeyValuePair<int, string> slot in CarPark)
+    {
+        if(slot.Value.Equals(null))
+        {
+            Console.WriteLine(slot.Key);
+            parkingSlot = slot.Key;
+            CarPark[slot.Key] = licence;
+            Console.WriteLine(slot.Key);
+            Console.WriteLine(slot.Value);
+        }
+        break;
+    }
+    Console.WriteLine(parkingSlot);
+    return parkingSlot;
+}
+
+AddVehicle("NDL-8349");
